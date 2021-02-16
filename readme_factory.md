@@ -13,7 +13,7 @@ using namespace std;
 
 ## Creating a Parent Class Internship
 
- To understand the factory design pattern. Lets make a class called circle.
+ To understand the factory design pattern. Lets make a class called Internship.
 
 ```
 class Internship
