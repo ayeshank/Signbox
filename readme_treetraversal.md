@@ -120,7 +120,7 @@ int main()
 and similarly other node will be inserted.
 
 ## Conclusion
-The above implementation of the tree traversal structure allow to insert the node according to the desire of the user and traverse them according to each node.
+The above implementation of the tree traversal structure allow to insert the node according to the desire of the user and traverse them according to each respective order.
 
 The output of the above code will look like this:
 
