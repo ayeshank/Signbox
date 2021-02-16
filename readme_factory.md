@@ -121,8 +121,6 @@ The **virtual Internship OrganizeInternee()** method is the method of parent cla
 
 ## Final Step - Main Function
 
-The int main() funciton will also create the object of the class circle and call the radiusOfCircle method to print the radius.It also call the **xyz()** function before and after updating the radius attribute using setter method i.e **setRadius(10)** as shown in below code.
-
 ```
 int main() {
   Internship *intern;
