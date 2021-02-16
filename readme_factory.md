@@ -139,7 +139,7 @@ int main() {
 ```
 Let examine the above main code:
 
-* **Internship *intern;** It will create the variable intern.
+* **Internship intern;** It will create the variable intern.
 * **InternshipManager internmanager;** It will create the variable internmanager.
 * **internmanager = new ReactInternCreator();** It will create object of ReactInternCreator.
 * **intern=internmanager->Newinternship();**  It will call the new internhsip method from internmanager and it will call the OrganizeInternee of internmanager which in return call the OrganizeInternee method of ReactInternCreator
