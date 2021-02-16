@@ -92,7 +92,7 @@ class ReactInternCreator : public InternshipManager
     };
 };
 ```
-The **virtual Internship* OrganizeInternee()** method is the method of parent class **InternshipManager** which is to be implemented in the subclass. It simply print a single line statement and create the object of **ReactIntern subclass**.
+The **virtual Internship OrganizeInternee()** method is the method of parent class **InternshipManager** which is to be implemented in the subclass. It simply print a single line statement and create the object of **ReactIntern subclass**.
 
 ## Creating a subclass NodeJSInternCreator
 
@@ -109,7 +109,7 @@ class NodeJSInternCreator : public InternshipManager
     };
 };
 ```
-The **virtual Internship* OrganizeInternee()** method is the method of parent class **InternshipManager** which is to be implemented in the subclass. It simply print a single line statement and create the object of **NodeJSIntern subclass**.
+The **virtual Internship OrganizeInternee()** method is the method of parent class **InternshipManager** which is to be implemented in the subclass. It simply print a single line statement and create the object of **NodeJSIntern subclass**.
 
 > **So uptil now we have two parent classes and each of them have two subclasses**
 > This table sum up our structure of code
