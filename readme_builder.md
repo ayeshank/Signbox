@@ -65,6 +65,7 @@ The method **getPartsDone()** will create a new **Helicopter** class object by *
 
 This class will define steps and tells to the builder that build in given order.
 
+```
 class Director{
     HelicopterBuilder *builder;
 public:
