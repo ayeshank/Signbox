@@ -101,6 +101,6 @@ int main() {
 ```
 ## Conclusion
 
-So wherever we go in the program and initailize the same instance it will give the same output as shown in above **main() function** and **xyz function**.
+So wherever we go in the program and initailize the same instance it will give the same output as shown in above **main() function** and **xyz function**. Thats the beauty of the **Singleton Design Pattern**
 
 
