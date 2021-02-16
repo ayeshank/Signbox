@@ -121,14 +121,12 @@ The **SecondHumanDecorator(Human *obj)** is a constructor used to assign a passe
 
 > **So uptil now the hierarchy of the above code structure can be shown as:**
 
-```
 Human - Parent Class
 │   ConcreteHuman 
 │   HumanDecorator    
 |   |   FirstHumanDecorator
 |   |   SecondHumanDecorator
 
-```
 
 ## Final Step - Main Function
 
