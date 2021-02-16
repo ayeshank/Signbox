@@ -125,8 +125,8 @@ The **SecondHumanDecorator(Human *obj)** is a constructor used to assign a passe
 Human - Parent Class
 │   ConcreteHuman 
 │   HumanDecorator    
-    |   FirstHumanDecorator
-    |   SecondHumanDecorator
+|   |   FirstHumanDecorator
+|   |   SecondHumanDecorator
 
 ```
 
