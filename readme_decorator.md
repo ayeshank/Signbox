@@ -141,7 +141,7 @@ int main() {
 ```
 The above code might look confusing but let first examine the above code:
 
-* **Human *me=new FirstHumanDecorator(new SecondHumanDecorator(new ConcreteHuman()));** As all the classes are with inheritance to one and each other the objects are been called in the nested manner.
+* **Human me=new FirstHumanDecorator(new SecondHumanDecorator(new ConcreteHuman()));** As all the classes are with inheritance to one and each other the objects are been called in the nested manner.
 >Very firstly the **ConcreteHuman** object will be created and the **void Operation** has been initialized.
 >Then the **SecondHumanDecorator** object will be created and the **void Operation** has been initialized with the additional implementation of the **SecondHumanDecorator** class in the parent's **void Operation** method.
 >Then the **FirstHumanDecorator** object will be created and the **void Operation** has been initialized with the additional implementation of the **FirstHumanDecorator** class in the parent's **void Operation** method.
