@@ -1,7 +1,10 @@
 #  EVENTS AND REPORT USING MYSQL & PHP
 We are going to have a look on creating events (schedules) in database by doing one practical example and generating the report of database record in the pdf form usinf **fpdf.php**
 
-# EVENTS:
+---
+---
+
+# 1. EVENTS
 > Lets discuss the events of the database first and find the answers to following questions:
 >* How Events are created?
 >* Where can we find events in database?
@@ -38,7 +41,11 @@ CREATE TABLE `user` (
  PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=30 DEFAULT CHARSET=utf8mb4
 ```
-Insert some dummy data into the database and the resultant table along with the user record will look like this :
+Insert some dummy data into the database or create a UI/Frontend for the registration page for insertng data into the database
+
+![alt text](https://github.com/ayeshank/Signbox/blob/master/Task3/sign.png)
+
+and the resultant table along with the user record will look like this :
 
 ![alt text](https://github.com/ayeshank/Signbox/blob/master/Task3/user.png)
 
@@ -111,7 +118,10 @@ After running the above query the userbackup table will fill with all the record
 ## CONCLUSION OF EVENTS
 Thats how the events are created in the database to perform an action related to database automatically.
 
-# REPORT:
+---
+---
+
+# 2. REPORT
 
 Let suppose you want the record of the user registration table to be available in the pdf or report form so that you can print it out easily.
 This can be made possible by using **FPDF**, which will generate the database record of users in the pdf form.
@@ -283,8 +293,8 @@ $pdf->Output();
 ## CONCLUSION OF EVENTS:
 
 The above code will generate a pdf file report of the users that are registered in the user table.
-[For full report generator code click here ](https://github.com/ayeshank/Signbox/blob/master/Task3/pdf.php)
-[For full webpage code click here ](https://github.com/ayeshank/Signbox/tree/master/Task3)
+* [For full report generator code click here ](https://github.com/ayeshank/Signbox/blob/master/Task3/pdf.php)
+* [For full webpage code click here ](https://github.com/ayeshank/Signbox/tree/master/Task3)
 
 
 
