@@ -1,5 +1,5 @@
 #  EVENTS AND REPORT USING MYSQL & PHP
-We are going to have a look on creating events (schedules) in database by doing one practical example and generating the report of database record in the pdf form usinf **fpdf.php**
+We are going to have a look on creating events (schedules) in database by doing one practical example and generating the report of database record in the pdf form using **fpdf.php**
 
 ---
 
