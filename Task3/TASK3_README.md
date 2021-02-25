@@ -39,7 +39,7 @@ CREATE TABLE `user` (
 ```
 Insert some dummy data into the database and the resultant table along with the user record will look like this :
 
-![alt text][user]
+![alt text][https://github.com/ayeshank/Signbox/blob/master/Task3/user.png]
 
 >Note : the currenttime field will contain the time at which the user was registered using NOW() functionin php;
 
@@ -64,7 +64,7 @@ CREATE TABLE `userbackup` (
 ```
 After running the above sql query a table with null data record will be created as shown below:
 
-![alt text][userbackup]
+![alt text][https://github.com/ayeshank/Signbox/blob/master/Task3/userbackup.png]
 
 > **Now our task is to transfer the values from user table into the userbackup table automicatically**
 > **For this create an event**
@@ -105,7 +105,7 @@ Lets understand the above event query step by step:
 While the events with both STARTS and ENDS are called **ONE TIME** events
 After running the above query the userbackup table will fill with all the record of the user table as shown:
 
-![alt text][userbackup2]
+![alt text][https://github.com/ayeshank/Signbox/blob/master/Task3/userbackup2.png]
 
 ## CONCLUSION OF EVENTS
 Thats how the events are created in the database to perform an action related to database automatically
