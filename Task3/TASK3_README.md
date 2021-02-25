@@ -2,7 +2,6 @@
 We are going to have a look on creating events (schedules) in database by doing one practical example and generating the report of database record in the pdf form usinf **fpdf.php**
 
 ---
----
 
 # 1. EVENTS
 > Lets discuss the events of the database first and find the answers to following questions:
@@ -118,7 +117,6 @@ After running the above query the userbackup table will fill with all the record
 ## CONCLUSION OF EVENTS
 Thats how the events are created in the database to perform an action related to database automatically.
 
----
 ---
 
 # 2. REPORT
