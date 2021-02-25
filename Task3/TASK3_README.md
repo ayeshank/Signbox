@@ -1,6 +1,7 @@
-# SET EVENTS IN DATABASE AND GENERATE REPORT USING MYSQL & PHP
+#  EVENTS AND REPORT USING MYSQL & PHP
 We are going to have a look on creating events (schedules) in database by doing one practical example and generating the report of database record in the pdf form usinf **fpdf.php**
 
+# EVENTS:
 > Lets discuss the events of the database first and find the answers to following questions:
 >* How Events are created?
 >* Where can we find events in database?
@@ -18,7 +19,7 @@ For this you have to create
 
 By using **phpmyadmin** database we had created the following table
 
-##USER TABLE
+## USER TABLE
 
 Create the **user table** by the following sql query:
 
@@ -43,7 +44,7 @@ Insert some dummy data into the database and the resultant table along with the 
 
 >Note : the currenttime field will contain the time at which the user was registered using NOW() functionin php;
 
-##USERBACKUP TABLE
+## USERBACKUP TABLE
 
 Create the **user table** by the following sql query:
 
@@ -108,7 +109,190 @@ After running the above query the userbackup table will fill with all the record
 ![alt text](https://github.com/ayeshank/Signbox/blob/master/Task3/userbackup2.png)
 
 ## CONCLUSION OF EVENTS
-Thats how the events are created in the database to perform an action related to database automatically
+Thats how the events are created in the database to perform an action related to database automatically.
+
+# REPORT:
+
+Let suppose you want the record of the user registration table to be available in the pdf or report form so that you can print it out easily.
+This can be made possible by using **FPDF**, which will generate the database record of users in the pdf form.
+
+## WHAT IS FPDF?
+
+FPDF is a PHP class which allows to generate PDF files with pure PHP, that is to say without using the PDFlib library. F from FPDF stands for Free: you may use it for any kind of usage and modify it to suit your needs.
+
+## GETTING STARTED:
+
+Consider the user table below:
+![alt text](https://github.com/ayeshank/Signbox/blob/master/Task3/user.png)
+
+We want this above record to be generated as a pdf file. To do this perform the following steps:
+
+1. **Create a Frontend**: In this case, we have a facebook login page.
+
+![alt text](https://github.com/ayeshank/Signbox/blob/master/Task3/fb1.png)
+
+![alt text](https://github.com/ayeshank/Signbox/blob/master/Task3/fb2.png)
+
+>In the above UI, we have an option for generating the record of all the user or specific user on the basis of Full name or email address or both.
+
+2. **Code**: The following code will demonstrate that how the fpdf will generate the report.
+
+Install fpdf zip file and extract it into the new folder called **lib** and import the class of fpdf.php in the pdf.php file.
+```
+<?php
+require('lib/fpdf.php');
+include 'process.php';
+```
+Make a new connection to the database to get the user data or run sql queries.
+```
+$servername = "localhost";
+$username = "root";
+$password = "";
+$dbname = "signboxtask3";
+$conn =  new mysqli($servername, $username, $password, $dbname);
+```
+Make a new object of FPDF class with 
+* First parameter 'P'   -Poratrait mode.
+* Second parameter 'mm' -page size unit in milimeter.
+* First parameter 'A4'  -Page style sets to A4.
+```
+$pdf = new FPDF('P','mm','A4');
+```
+Call a new page from AddPage() class mathod
+```
+$pdf->AddPage();
+```
+Set a logo image by calling Image() class method with parameters (image name, left, top, size).
+```
+$pdf->Image('fb.png',83,9,40);
+```
+Set a Line break to 12
+```
+$pdf->Ln(12);
+```
+Set the font, weight, and size of the **USER REPORT** cell.
+```
+$pdf->SetFont('Arial','B',15);
+```
+Customize cell setting by parameters(left, top, text, border(set to 0 if no border), newline)
+```
+$pdf->Cell(190,7,'USER REPORT ',0,1,'C');
+$pdf->SetFont('Arial','',10);
+$pdf->Cell(190,5,'By: Facebook',0,1,'C');
+$pdf->Ln(10);
+$pdf->SetFont('Arial','B',10);
+$pdf->Cell(14,0,'Dated : ',0,1,'C');
+```
+Show the current date on report using date() function.
+```
+$pdf->Cell(52,0,date("Y.m.d"),0,1,'C');
+$pdf->Cell(325,0,'Developer : Ayesha Noor Khan',0,1,'C');
+$pdf->Cell(10,7,'',0,1);
+$pdf->SetFont('Arial','B',10);
+```
+From here we are starting to customize the report table.
+```
+$pdf->SetFillColor(0,128,255);
+$pdf->SetTextColor(255);
+$pdf->SetDrawColor(255);
+$pdf->SetLineWidth(.3);
+$pdf->SetFont('','B');
+$pdf->Ln(7);
+```
+* **SetFillColor** - background color of cell. It takes rgb value(currently set to lightblue).
+* **SetTextColor** - text color of cell. It takes rgb value(currently set to black).
+* **SetDrawColor** - table lines color . It takes rgb value(currently set to black).
+* **SetLineWidth** - table line width.
+
+Give the text to table head with the last parameter of **TRUE** to activate the background color of **SetFillColor**
+```
+$pdf->Cell(20,6,'USER ID',1,0,'C',TRUE);
+$pdf->Cell(45,6,'NAME',1,0,'C',TRUE);
+$pdf->Cell(57,6,'EMAIL',1,0,'C',TRUE);
+$pdf->Cell(26,6,'CONTACT',1,0,'C',TRUE);
+$pdf->Cell(23,6,'BIRTHDATE',1,0,'C',TRUE);
+$pdf->Cell(18,6,'GENDER',1,1,'C',TRUE);
+$pdf->SetTextColor(0);
+$pdf->SetDrawColor(192,192,192);
+$pdf->Ln(3);
+$pdf->SetFont('Arial','',10);
+```
+This will simply check for the server POST request and check whether single user report is required or to get all user's report.
+> **NOTE** : If all the users are required it will use the query **SELECT * FROM user** and pass the database value into the cell by the statement **$pdf->Cell(45,6,$row['FName'],1,0);**
+```
+if($_SERVER["REQUEST_METHOD"] == "POST") {
+    if(isset($_POST['generateall']))
+    {
+    
+$detail = mysqli_query($conn, "SELECT * FROM user");
+while ($row = mysqli_fetch_array($detail)){
+    $pdf->Cell(20,6,$row['id'],1,0);
+    $pdf->Cell(45,6,$row['FName'],1,0);
+    $pdf->Cell(57,6,$row['Email'],1,0);
+    $pdf->Cell(26,6,$row['Mobile'],1,0); 
+    $pdf->Cell(23,6,$row['DOB'],1,0); 
+    $pdf->Cell(18,6,$row['Gender'],1,1); 
+}
+}
+```
+If a specific user report is required it will search it by user name or email or both.
+```
+else if(isset($_POST['generate']))
+{
+
+$ueinfo=$_POST['ueinfo'];
+$uminfo=$_POST['uminfo'];
+if($_POST['uminfo'] !== null && $_POST['ueinfo'] == null)
+{
+$detail2 = mysqli_query($conn, "SELECT * FROM user where FName ='$uminfo' ");
+}
+else if($_POST['uminfo'] == null && $_POST['ueinfo'] !== null)
+{
+$detail2 = mysqli_query($conn, "SELECT * FROM user where Email ='$ueinfo' ");
+}
+else if($_POST['uminfo'] !== null && $_POST['ueinfo'] !== null)
+{
+$detail2 = mysqli_query($conn, "SELECT * FROM user where Email ='$ueinfo' AND FName ='$uminfo' ");
+}
+while ($row = mysqli_fetch_array($detail2)){
+$pdf->Cell(20,6,$row['id'],1,0);
+$pdf->Cell(45,6,$row['FName'],1,0);
+$pdf->Cell(57,6,$row['Email'],1,0);
+$pdf->Cell(26,6,$row['Mobile'],1,0); 
+$pdf->Cell(23,6,$row['DOB'],1,0); 
+$pdf->Cell(18,6,$row['Gender'],1,1); 
+}
+}
+}
+```
+To set the page border, set the **SetDrawColor** to be 0 for black line color and use **Rect(5, 5, 200, 287, 'D');** for page border width and height. The **'D'** is used for **A4 page size**.
+```
+$pdf->SetDrawColor(0);
+$pdf->Rect(5, 5, 200, 287, 'D');
+```
+To clean the already exist data in buffer use **ob_end_clean()** method for no garbage value in the report.
+```
+ob_end_clean();
+```
+To show the ouput of all the above code use **Output()** method of FPDF class.
+```
+$pdf->Output(); 
+?> 
+```
+
+## CONCLUSION OF EVENTS:
+
+The above code will generate a pdf file report of the users that are registered in the user table.
+[For full report generator code click here ](https://github.com/ayeshank/Signbox/blob/master/Task3/pdf.php)
+[For full webpage code click here ](https://github.com/ayeshank/Signbox/tree/master/Task3)
+
+
+
+
+
+
+
+
 
 
 
