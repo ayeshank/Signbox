@@ -287,6 +287,10 @@ To show the ouput of all the above code use **Output()** method of FPDF class.
 $pdf->Output(); 
 ?> 
 ```
+The report will be generated like this:
+
+![alt text](https://github.com/ayeshank/Signbox/blob/master/Task3/fb3.png)
+
 
 ## CONCLUSION OF EVENTS:
 
